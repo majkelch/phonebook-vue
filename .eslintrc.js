@@ -38,6 +38,12 @@ module.exports = {
     'sort-keys': ['error', 'asc', {
       caseSensitive: false,
       natural: true
+    }],
+    'space-before-function-paren': 0,
+    'generator-star-spacing': 0,
+    'vue/html-closing-bracket-newline': ['error', {
+      "singleline": "never",
+      "multiline": "never"
     }]
   },
   parserOptions: {

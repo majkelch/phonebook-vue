@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import PhoneBook from './components/PhoneBook.vue'
+import PhoneBook from './components/PhoneBook'
 
 export default {
   name: 'App',
