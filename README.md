@@ -20,3 +20,6 @@ Phone book with 2 sets of styles.
 3. Project should be launched from console
 4. Styles should be built (Sass)
 5. Tests
+
+### Launching, building, testing
+@TODO Add description
