@@ -9,10 +9,10 @@ module.exports = {
     'standard'
   ],
   plugins: [
-      'jsdoc',
-      'import',
-      'ramda',
-      'vue'
+    'jsdoc',
+    'import',
+    'ramda',
+    'vue'
   ],
   overrides: [
     {
@@ -36,12 +36,12 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'sort-keys': ['error', 'asc', {
-      'caseSensitive': false,
-      'natural': true
+      caseSensitive: false,
+      natural: true
     }]
   },
   parserOptions: {
     parser: 'babel-eslint',
-    sourceType: "module"
+    sourceType: 'module'
   }
 }
