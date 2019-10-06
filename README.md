@@ -18,7 +18,7 @@ Phone book with 2 sets of styles.
 1. Vue.js 2.x
 2. Bootstrap 4
 3. Project should be launched from console
-4. Styles should be built (Sass)
+4. Styles should be built (SASS)
 5. Tests
 
 ## Project setup
