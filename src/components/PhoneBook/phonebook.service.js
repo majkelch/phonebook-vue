@@ -10,7 +10,7 @@ import logService from '@/services/log.service'
  * @param {Object} params - Params needed for request and/or data parsing
  * @returns {Array} Array of parsed elements for component
  */
-export const getEntries = async(params) => {
+export const getEntries = async (params) => {
   try {
     const entries = await getPhoneBookEntries(params)
     const propsToPick = ['name', 'surname', 'phone', 'email', 'gender']

@@ -3,10 +3,11 @@
     <app-loader v-if="isLoading" />
 
     <div v-if="!isLoading">
-      <ul
-        v-for="entry in entries"
-        :key="entry.id">
-        <PhoneBookItem :row="entry" />
+      <ul>
+        <PhoneBookItem
+          v-for="entry in entries"
+          :key="entry.id"
+          :row="entry" />
       </ul>
     </div>
   </div>
