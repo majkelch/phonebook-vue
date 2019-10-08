@@ -51,8 +51,9 @@ const SURNAME = configureField({ key: 'surname' })
 const PHONE = configureField({ key: 'phone' })
 const EMAIL = configureField({ key: 'email' })
 const GENDER = configureField({ key: 'gender', sortable: false })
+const ACTIONS = configureField({ key: 'actions', sortable: false })
 
 /**
  * Table fields
  */
-export const FIELDS = [ID, PHONE, NAME, SURNAME, EMAIL, GENDER]
+export const FIELDS = [ID, PHONE, NAME, SURNAME, EMAIL, GENDER, ACTIONS]

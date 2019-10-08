@@ -34,25 +34,33 @@ export default {
 
   data() {
     return {
-      buttons: this.$options.consts.themeToggleButtons
+      buttons: []
     }
   },
 
   mounted() {
-    this.$emit('onThemeChange', R.head(this.buttons))
+    this.initialize()
   },
 
   methods: {
+    /**
+     * Initialize defaults for component
+     */
+    initialize() {
+      this.buttons = [...this.$options.consts.themeToggleButtons]
+      this.$emit('onThemeChange', R.head(this.buttons))
+    },
+
     /**
      * Event handler on toggling theme
      * @param {Object} btn - Toggled button
      */
     onToggleTheme(btn) {
-      const filterByToggled = item => R.equals(btn.order, item.order)
+      const filterByCurrentlyToggled = item => R.equals(btn.order, item.order)
       const toggleItems = item => ({ ...item, isToggled: R.not(btn.isToggled) })
       const sortByOrder = R.sortBy(R.prop('order'))
       const toggled = R.compose(
-        R.reject(filterByToggled),
+        R.reject(filterByCurrentlyToggled),
         R.map(toggleItems)
       )(this.buttons)
 
@@ -60,7 +68,9 @@ export default {
         sortByOrder,
         R.flatten
       )([toggled, btn])
-      this.$emit('onThemeChange', btn)
+
+      const currentlyOn = item => item.isToggled
+      this.$emit('onThemeChange', R.find(currentlyOn, this.buttons))
     }
   }
 }

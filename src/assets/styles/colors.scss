@@ -1,5 +1,6 @@
 /**
  * Color definitions
+ * @see http://chir.ag/projects/name-that-color
  */
 $--color-violet: #ee82ee;
 $--color-indigo: #4b0082;
@@ -9,11 +10,13 @@ $--color-yellow: #ffff00;
 $--color-orange: #ffa500;
 $--color-red: #ff0000;
 $--color-black: #000000;
+$--color-alabaster: #FAFAFA;
 
 
 /**
  * Functional colors - for usage in app
  */
+$--color-body: $--color-alabaster;
 
 /**
  * Theme rainbow

@@ -5,6 +5,11 @@
 
 $title-size: 5rem;
 
+html,
+body {
+    background: $--color-body;
+}
+
 .theme-rainbow {
     .app-title {
         background-image: linear-gradient(to right,

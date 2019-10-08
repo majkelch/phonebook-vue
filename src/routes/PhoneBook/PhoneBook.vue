@@ -20,7 +20,16 @@
         :filter-debounce="$options.consts.FILTER_DEBOUNCE_TIME"
         :items="entries"
         :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE"
-        @filtered="onFilteredTable" />
+        @filtered="onFilteredTable">
+        <template v-slot:cell(actions)="data">
+          <PhoneBookDelete
+            :row="data"
+            @onRowDelete="onRowDelete" />
+        </template>
+        <template v-slot:table-caption>
+          Number of items: {{ itemsNumber }}.
+        </template>
+      </b-table>
 
       <AppPager
         :config="pagerConfig"
@@ -30,6 +39,8 @@
 </template>
 
 <script>
+import * as R from 'ramda'
+
 // imports from exported consts are sorted alphabetically
 import {
   FIELDS,
@@ -46,6 +57,8 @@ import AppPager from '@/components/AppPager'
 import AppSearch from '@/components/AppSearch'
 import AppTitle from '@/components/AppTitle'
 
+import PhoneBookDelete from './PhoneBookDelete'
+
 export default {
   name: 'PhoneBook',
 
@@ -54,7 +67,8 @@ export default {
     AppLoader,
     AppPager,
     AppSearch,
-    AppTitle
+    AppTitle,
+    PhoneBookDelete
   },
 
   /**
@@ -72,8 +86,12 @@ export default {
       currentTheme: '',
       entries: [],
       filter: null,
+      filteredItems: [],
       isLoading: true,
-      pagerConfig: PAGER_CONFIG
+      itemsNumber: null,
+      itemsToRemove: [],
+      pagerConfig: PAGER_CONFIG,
+      entriesCopy: []
     }
   },
 
@@ -94,6 +112,8 @@ export default {
         this.entries = await getEntries({
           amount: MAX_ENTRIES
         })
+        this.itemsNumber = R.length(this.entries)
+        this.entriesCopy = [...this.entries]
         this.isLoading = false
       } catch (e) {
         this.isLoading = true
@@ -116,6 +136,10 @@ export default {
     onFilterInput(data) {
       const { filter } = data
       this.filter = filter
+      if (!filter) {
+        const idsToRemove = R.map(item => item.id, this.itemsToRemove)
+        this.entries = R.filter(item => !idsToRemove.includes(item.id), this.entriesCopy)
+      }
     },
 
     /**
@@ -129,6 +153,8 @@ export default {
         MAX_ENTRIES: numberOfItems
       }
       this.currentPage = START_PAGE
+      this.filteredItems = items
+      this.itemsNumber = numberOfItems
     },
 
     /**
@@ -138,6 +164,24 @@ export default {
     onThemeChange(data) {
       const { name } = data
       this.currentTheme = `theme-${name}`
+    },
+
+    /**
+     * Event handler for removing row
+     * @param {Object} data - Row data
+     */
+    onRowDelete(data) {
+      const { index, item } = data
+      const removeRowByIdx = R.remove(index, 1)
+      if (this.filter) {
+        this.itemsToRemove = R.append(item, this.itemsToRemove)
+        this.entries = removeRowByIdx(this.filteredItems)
+        this.itemsNumber = R.length(this.entries)
+        return
+      }
+      this.entries = removeRowByIdx(this.entries)
+      this.entriesCopy = [...this.entries]
+      this.itemsNumber = R.length(this.entries)
     }
   }
 }
