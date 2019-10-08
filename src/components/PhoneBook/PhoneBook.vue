@@ -3,21 +3,29 @@
     <app-loader v-if="isLoading" />
 
     <div v-if="!isLoading">
-      <ul>
-        <PhoneBookItem
-          v-for="entry in entries"
-          :key="entry.id"
-          :row="entry" />
-      </ul>
+      <b-table
+        hover
+        responsive
+        striped
+        :fields="$options.consts.FIELDS"
+        :items="entries"
+        :per-page="$options.consts.MAX_PER_PAGE">
+        <template v-slot:row-details="data">
+          <PhoneBookItem :row="data" />
+        </template>
+      </b-table>
+
+      <AppPager />
     </div>
   </div>
 </template>
 
 <script>
-import { MAX_ENTRIES } from './phonebook.config'
+import { FIELDS, MAX_ENTRIES, MAX_PER_PAGE } from './phonebook.config'
 import { getEntries } from './phonebook.service'
 
-import AppLoader from '../AppLoader/AppLoader'
+import AppLoader from '../AppLoader'
+import AppPager from '../AppPager'
 import PhoneBookItem from './PhoneBookItem'
 
 export default {
@@ -25,7 +33,16 @@ export default {
 
   components: {
     AppLoader,
+    AppPager,
     PhoneBookItem
+  },
+
+  /**
+   * Custom option for consts
+   */
+  consts: {
+    FIELDS,
+    MAX_PER_PAGE
   },
 
   data() {
@@ -59,7 +76,6 @@ export default {
 
 <style lang="scss" scoped>
   .container-fluid {
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

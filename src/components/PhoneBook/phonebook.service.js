@@ -1,5 +1,6 @@
 import * as R from 'ramda'
 
+import { FIELDS } from './phonebook.config'
 import { mapIndexed } from '@/utils/app.utils'
 
 import { getPhoneBookEntries } from '@/api/phonebook.dataservice'
@@ -13,10 +14,10 @@ import logService from '@/services/log.service'
 export const getEntries = async (params) => {
   try {
     const entries = await getPhoneBookEntries(params)
-    const propsToPick = ['name', 'surname', 'phone', 'email', 'gender']
+    const propsToPick = R.pluck('key', FIELDS)
     const processItem = (item, idx) => ({
       ...R.pick(propsToPick, item),
-      id: idx
+      id: idx + 1
     })
 
     return mapIndexed(processItem, entries)
