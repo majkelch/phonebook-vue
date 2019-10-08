@@ -17,9 +17,6 @@
         :items="entries"
         :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE"
         @filtered="onFilteredTable">
-        <template v-slot:row-details="data">
-          <PhoneBookItem :row="data" />
-        </template>
       </b-table>
 
       <AppPager
@@ -42,7 +39,6 @@ import { getEntries } from './phonebook.service'
 import AppLoader from '@/components/AppLoader'
 import AppPager from '@/components/AppPager'
 import AppSearch from '@/components/AppSearch'
-import PhoneBookItem from './PhoneBookItem'
 
 export default {
   name: 'PhoneBook',
@@ -50,8 +46,7 @@ export default {
   components: {
     AppLoader,
     AppPager,
-    AppSearch,
-    PhoneBookItem
+    AppSearch
   },
 
   /**
