@@ -1,2 +1,31 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-vue/src/index.scss';
+
+@import "~@/assets/styles/colors.scss";
+
+$title-size: 5rem;
+
+.theme-rainbow {
+    .app-title {
+        background-image: linear-gradient(to right,
+                $--color-rainbow-1,
+                $--color-rainbow-2,
+                $--color-rainbow-3,
+                $--color-rainbow-4,
+                $--color-rainbow-5,
+                $--color-rainbow-6,
+                $--color-rainbow-7
+        );
+        background-clip: text;
+        color: transparent;
+        font-size: $title-size;
+        font-weight: bold;
+        -webkit-text-stroke: 1px black;
+    }
+}
+.theme-emo {
+    .app-title {
+        color: $--color-emo-title;
+        font-size: $title-size;
+    }
+}

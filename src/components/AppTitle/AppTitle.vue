@@ -38,6 +38,10 @@ export default {
     }
   },
 
+  mounted() {
+    this.$emit('onThemeChange', R.head(this.buttons))
+  },
+
   methods: {
     /**
      * Event handler on toggling theme
@@ -61,7 +65,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  @import "app_title.scss";
-</style>

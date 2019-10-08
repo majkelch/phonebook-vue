@@ -69,7 +69,7 @@ export default {
   data() {
     return {
       currentPage: START_PAGE,
-      currentTheme: 'theme-rainbow',
+      currentTheme: '',
       entries: [],
       filter: null,
       isLoading: true,

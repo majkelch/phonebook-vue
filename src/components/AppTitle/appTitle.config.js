@@ -2,6 +2,6 @@
  * Config for component
  */
 export const themeToggleButtons = [
-  { caption: 'Theme 1', isToggled: true, name: 'rainbow', order: 0 },
-  { caption: 'Theme 2', isToggled: false, name: 'emo', order: 1 }
+  { caption: 'Theme Emo', isToggled: true, name: 'emo', order: 0 },
+  { caption: 'Theme Rainbow', isToggled: false, name: 'rainbow', order: 1 }
 ]
