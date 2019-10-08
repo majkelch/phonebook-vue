@@ -1,9 +1,11 @@
 <template>
-  <b-spinner
-    class="app-spinner"
-    label="Loading"
-    type="grow"
-    variant="primary" />
+  <div class="d-flex justify-content-center mt-5">
+    <b-spinner
+      class="app-spinner"
+      label="Loading"
+      type="grow"
+      variant="primary" />
+  </div>
 </template>
 
 <script>

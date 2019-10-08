@@ -1,10 +1,10 @@
 <template>
-  <div
-    :class="currentTheme"
-    class="container-fluid">
-    <app-loader v-if="isLoading" />
+  <b-container
+    fluid
+    :class="currentTheme">
+    <AppLoader v-if="isLoading" />
 
-    <div v-if="!isLoading">
+    <b-row v-if="!isLoading">
       <AppTitle
         @onThemeChange="onThemeChange" />
 
@@ -34,8 +34,8 @@
       <AppPager
         :config="pagerConfig"
         @onPageChange="onPageChange" />
-    </div>
-  </div>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -186,11 +186,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .container-fluid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>

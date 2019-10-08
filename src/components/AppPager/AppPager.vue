@@ -1,9 +1,13 @@
 <template>
-  <b-pagination
-    v-model="currentPage"
-    :total-rows="config.MAX_ENTRIES"
-    :per-page="config.MAX_PER_PAGE"
-    @input="onPageChange" />
+  <b-container>
+    <b-row align-v="center">
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="config.MAX_ENTRIES"
+        :per-page="config.MAX_PER_PAGE"
+        @input="onPageChange" />
+    </b-row>
+  </b-container>
 </template>
 
 <script>

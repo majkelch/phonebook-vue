@@ -1,32 +1,34 @@
 <template>
-  <div>
-    <b-col
-      lg="6"
-      class="my-1">
-      <b-form-group
-        label="Filter"
-        label-cols-sm="2"
-        label-size="sm"
-        label-for="filterInput"
-        class="mb-0">
-        <b-input-group size="sm">
-          <b-form-input
-            id="filterInput"
-            v-model="filter"
-            type="search"
-            placeholder="Type to Search"
-            @input="onFilterInput" />
-          <b-input-group-append>
-            <b-button
-              :disabled="!filter"
-              @click="resetFilter">
-              Clear
-            </b-button>
-          </b-input-group-append>
-        </b-input-group>
-      </b-form-group>
-    </b-col>
-  </div>
+  <b-container>
+    <b-row>
+      <b-col
+        cols="12"
+        class="my-1">
+        <b-form-group
+          label="Filter"
+          label-cols-sm="3"
+          label-size="sm"
+          label-for="filterInput"
+          class="mb-0">
+          <b-input-group size="sm">
+            <b-form-input
+              id="filterInput"
+              v-model="filter"
+              type="search"
+              placeholder="Type to Search"
+              @input="onFilterInput" />
+            <b-input-group-append>
+              <b-button
+                :disabled="!filter"
+                @click="resetFilter">
+                Clear
+              </b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
