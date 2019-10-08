@@ -5,8 +5,7 @@
       class="my-1">
       <b-form-group
         label="Filter"
-        label-cols-sm="3"
-        label-align-sm="right"
+        label-cols-sm="2"
         label-size="sm"
         label-for="filterInput"
         class="mb-0">
