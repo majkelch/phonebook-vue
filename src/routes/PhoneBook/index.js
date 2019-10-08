@@ -1,3 +1,1 @@
-import PhoneBook from './PhoneBook'
-
-export default PhoneBook
+export default from './PhoneBook'

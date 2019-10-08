@@ -3,6 +3,8 @@
     <app-loader v-if="isLoading" />
 
     <div v-if="!isLoading">
+      <AppSearch />
+
       <b-table
         hover
         responsive
@@ -30,6 +32,7 @@ import { getEntries } from './phonebook.service'
 
 import AppLoader from '@/components/AppLoader'
 import AppPager from '@/components/AppPager'
+import AppSearch from '@/components/AppSearch'
 import PhoneBookItem from './PhoneBookItem'
 
 export default {
@@ -38,6 +41,7 @@ export default {
   components: {
     AppLoader,
     AppPager,
+    AppSearch,
     PhoneBookItem
   },
 
