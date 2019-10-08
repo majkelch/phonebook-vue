@@ -7,21 +7,24 @@
         hover
         responsive
         striped
+        :current-page="currentPage"
         :fields="$options.consts.FIELDS"
         :items="entries"
-        :per-page="$options.consts.MAX_PER_PAGE">
+        :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE">
         <template v-slot:row-details="data">
           <PhoneBookItem :row="data" />
         </template>
       </b-table>
 
-      <AppPager />
+      <AppPager
+        :config="$options.consts.PAGER_CONFIG"
+        @onPageChange="onPageChange" />
     </div>
   </div>
 </template>
 
 <script>
-import { FIELDS, MAX_ENTRIES, MAX_PER_PAGE } from './phonebook.config'
+import { FIELDS, MAX_ENTRIES, PAGER_CONFIG } from './phonebook.config'
 import { getEntries } from './phonebook.service'
 
 import AppLoader from '../AppLoader'
@@ -42,11 +45,12 @@ export default {
    */
   consts: {
     FIELDS,
-    MAX_PER_PAGE
+    PAGER_CONFIG
   },
 
   data() {
     return {
+      currentPage: 1,
       entries: [],
       isLoading: true
     }
@@ -69,6 +73,15 @@ export default {
         amount: MAX_ENTRIES
       })
       this.isLoading = false
+    },
+
+    /**
+     * Event handler for changing page
+     * @param {Object} data - Data sent with event
+     */
+    onPageChange(data) {
+      const { currentPage } = data
+      this.currentPage = currentPage
     }
   }
 }

@@ -13,6 +13,14 @@ export const MAX_ENTRIES = 100
 export const MAX_PER_PAGE = 10
 
 /**
+ * Pager config
+ */
+export const PAGER_CONFIG = {
+  MAX_ENTRIES,
+  MAX_PER_PAGE
+}
+
+/**
  * Helper function for fields
  * @param {Object} config - Field config
  * @param {String} config.key - Field's key
