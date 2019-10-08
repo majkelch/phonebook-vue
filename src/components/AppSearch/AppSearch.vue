@@ -46,6 +46,7 @@ export default {
      */
     resetFilter() {
       this.filter = null
+      this.onFilterInput()
     },
 
     /**

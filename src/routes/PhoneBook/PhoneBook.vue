@@ -7,7 +7,6 @@
         @onFilterInput="onFilterInput" />
 
       <b-table
-        hover
         responsive
         striped
         :current-page="currentPage"
@@ -16,8 +15,7 @@
         :filter-debounce="$options.consts.FILTER_DEBOUNCE_TIME"
         :items="entries"
         :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE"
-        @filtered="onFilteredTable">
-      </b-table>
+        @filtered="onFilteredTable" />
 
       <AppPager
         :config="pagerConfig"
