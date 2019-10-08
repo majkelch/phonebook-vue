@@ -69,10 +69,14 @@ export default {
      * Initialize defaults for component
      */
     async initialize() {
-      this.entries = await getEntries({
-        amount: MAX_ENTRIES
-      })
-      this.isLoading = false
+      try {
+        this.entries = await getEntries({
+          amount: MAX_ENTRIES
+        })
+        this.isLoading = false
+      } catch (e) {
+        this.isLoading = true
+      }
     },
 
     /**

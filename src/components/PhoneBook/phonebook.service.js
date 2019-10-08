@@ -23,5 +23,6 @@ export const getEntries = async (params) => {
     return mapIndexed(processItem, entries)
   } catch (e) {
     logService.log(e)
+    await Promise.reject(new Error('Failed to load data!'))
   }
 }

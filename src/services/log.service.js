@@ -7,7 +7,7 @@
  * @param {Error|Object|String} payload - Payload to be logged
  */
 const log = (payload) => {
-  console.log(payload)
+  console.error(payload)
 }
 
 export default {

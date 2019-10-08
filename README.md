@@ -1,6 +1,3 @@
-### Project goal
-Phone book with 2 sets of styles.
-
 ### Requirements
 1. Test data: https://uinames.com/api/?ext&amount=100
 2. Entries should be displayed in a table which has following features:
