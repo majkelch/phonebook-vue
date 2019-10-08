@@ -13,6 +13,16 @@ export const MAX_ENTRIES = 100
 export const MAX_PER_PAGE = 10
 
 /**
+ * Filter debounce time (in ms)
+ */
+export const FILTER_DEBOUNCE_TIME = 200
+
+/**
+ * Start page for table
+ */
+export const START_PAGE = 1
+
+/**
  * Pager config
  */
 export const PAGER_CONFIG = {

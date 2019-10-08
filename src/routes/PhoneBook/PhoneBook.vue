@@ -3,7 +3,8 @@
     <app-loader v-if="isLoading" />
 
     <div v-if="!isLoading">
-      <AppSearch />
+      <AppSearch
+        @onFilterInput="onFilterInput" />
 
       <b-table
         hover
@@ -12,22 +13,30 @@
         :current-page="currentPage"
         :fields="$options.consts.FIELDS"
         :filter="filter"
+        :filter-debounce="$options.consts.FILTER_DEBOUNCE_TIME"
         :items="entries"
-        :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE">
+        :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE"
+        @filtered="onFilteredTable">
         <template v-slot:row-details="data">
           <PhoneBookItem :row="data" />
         </template>
       </b-table>
 
       <AppPager
-        :config="$options.consts.PAGER_CONFIG"
+        :config="pagerConfig"
         @onPageChange="onPageChange" />
     </div>
   </div>
 </template>
 
 <script>
-import { FIELDS, MAX_ENTRIES, PAGER_CONFIG } from './phonebook.config'
+import {
+  FIELDS,
+  FILTER_DEBOUNCE_TIME,
+  MAX_ENTRIES,
+  PAGER_CONFIG,
+  START_PAGE
+} from './phonebook.config'
 import { getEntries } from './phonebook.service'
 
 import AppLoader from '@/components/AppLoader'
@@ -50,15 +59,17 @@ export default {
    */
   consts: {
     FIELDS,
+    FILTER_DEBOUNCE_TIME,
     PAGER_CONFIG
   },
 
   data() {
     return {
-      currentPage: 1,
+      currentPage: START_PAGE,
       entries: [],
-      filter: '',
-      isLoading: true
+      filter: null,
+      isLoading: true,
+      pagerConfig: PAGER_CONFIG
     }
   },
 
@@ -86,12 +97,34 @@ export default {
     },
 
     /**
-     * Event handler for changing page
-     * @param {Object} data - Data sent with event
+     * Event handler for changing page from <AppPager>
+     * @param {Object} data - Data sent with pager event
      */
     onPageChange(data) {
       const { currentPage } = data
       this.currentPage = currentPage
+    },
+
+    /**
+     * Event handler for filtering from <AppSearch>
+     * @param {Object} data - Data sent with filter event
+     */
+    onFilterInput(data) {
+      const { filter } = data
+      this.filter = filter
+    },
+
+    /**
+     * Event handler from table with filter results
+     * @param {Array} items - Found items
+     * @param {Number} numberOfItems - Number of found items
+     */
+    onFilteredTable(items, numberOfItems) {
+      this.pagerConfig = {
+        ...this.pagerConfig,
+        MAX_ENTRIES: numberOfItems
+      }
+      this.currentPage = START_PAGE
     }
   }
 }
