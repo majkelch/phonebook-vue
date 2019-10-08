@@ -1,9 +1,12 @@
 <template>
-  <div class="container-fluid">
+  <div
+    :class="currentTheme"
+    class="container-fluid">
     <app-loader v-if="isLoading" />
 
     <div v-if="!isLoading">
-      <AppTitle />
+      <AppTitle
+        @onThemeChange="onThemeChange" />
 
       <AppSearch
         @onFilterInput="onFilterInput" />
@@ -66,6 +69,7 @@ export default {
   data() {
     return {
       currentPage: START_PAGE,
+      currentTheme: 'theme-rainbow',
       entries: [],
       filter: null,
       isLoading: true,
@@ -125,6 +129,15 @@ export default {
         MAX_ENTRIES: numberOfItems
       }
       this.currentPage = START_PAGE
+    },
+
+    /**
+     * Event handler for theme change
+     * @param {Object} data - New theme
+     */
+    onThemeChange(data) {
+      const { name } = data
+      this.currentTheme = `theme-${name}`
     }
   }
 }

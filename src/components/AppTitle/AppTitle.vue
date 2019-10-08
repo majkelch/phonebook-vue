@@ -17,8 +17,6 @@
           {{ btn.caption }}
         </b-button>
       </b-button-group>
-      <span>Current Theme: {{ currentTheme }}</span><br><br>
-      <span>Buttons: {{ buttons }}</span>
     </b-row>
   </b-container>
 </template>
@@ -40,15 +38,6 @@ export default {
     }
   },
 
-  computed: {
-    /**
-     * Computed current theme
-     */
-    currentTheme() {
-      return this.buttons.filter(btn => btn.isToggled)
-    }
-  },
-
   methods: {
     /**
      * Event handler on toggling theme
@@ -56,7 +45,7 @@ export default {
      */
     onToggleTheme(btn) {
       const filterByToggled = item => R.equals(btn.order, item.order)
-      const toggleItems = item => ({ ...item, isToggled: !btn.isToggled })
+      const toggleItems = item => ({ ...item, isToggled: R.not(btn.isToggled) })
       const sortByOrder = R.sortBy(R.prop('order'))
       const toggled = R.compose(
         R.reject(filterByToggled),
@@ -67,6 +56,7 @@ export default {
         sortByOrder,
         R.flatten
       )([toggled, btn])
+      this.$emit('onThemeChange', btn)
     }
   }
 }
