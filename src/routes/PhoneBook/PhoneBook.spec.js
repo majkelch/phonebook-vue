@@ -1,11 +1,11 @@
 import { shallowMount } from '@vue/test-utils'
 
-import PhoneBook from '@/components/PhoneBook'
-import { MAX_ENTRIES } from '@/components/PhoneBook/phonebook.config'
+import PhoneBook from '@/routes/PhoneBook'
+import { MAX_ENTRIES } from '@/routes/PhoneBook/phonebook.config'
 
-import { getEntries } from '@/components/PhoneBook/phonebook.service'
+import { getEntries } from '@/routes/PhoneBook/phonebook.service'
 
-jest.mock('@/components/PhoneBook/phonebook.service', () => ({
+jest.mock('@/routes/PhoneBook/phonebook.service', () => ({
   getEntries: jest.fn()
 }))
 

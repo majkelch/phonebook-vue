@@ -9,6 +9,7 @@
         striped
         :current-page="currentPage"
         :fields="$options.consts.FIELDS"
+        :filter="filter"
         :items="entries"
         :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE">
         <template v-slot:row-details="data">
@@ -27,8 +28,8 @@
 import { FIELDS, MAX_ENTRIES, PAGER_CONFIG } from './phonebook.config'
 import { getEntries } from './phonebook.service'
 
-import AppLoader from '../AppLoader'
-import AppPager from '../AppPager'
+import AppLoader from '@/components/AppLoader'
+import AppPager from '@/components/AppPager'
 import PhoneBookItem from './PhoneBookItem'
 
 export default {
@@ -52,6 +53,7 @@ export default {
     return {
       currentPage: 1,
       entries: [],
+      filter: '',
       isLoading: true
     }
   },

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import PhoneBook from './components/PhoneBook'
+import PhoneBook from './routes/PhoneBook'
 
 export default {
   name: 'App',

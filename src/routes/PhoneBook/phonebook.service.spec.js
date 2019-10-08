@@ -1,9 +1,9 @@
 /* eslint sort-keys: 0 */
 /* eslint no-useless-escape: 0 */
-import { MAX_ENTRIES } from '@/components/PhoneBook/phonebook.config'
+import { MAX_ENTRIES } from '@/routes/PhoneBook/phonebook.config'
 
 import { getPhoneBookEntries } from '@/api/phonebook.dataservice'
-import { getEntries } from '@/components/PhoneBook/phonebook.service'
+import { getEntries } from '@/routes/PhoneBook/phonebook.service'
 
 jest.mock('@/api/phonebook.dataservice', () => ({
   getPhoneBookEntries: jest.fn()
@@ -109,10 +109,10 @@ describe('phonebook.service', () => {
       getPhoneBookEntries.mockImplementationOnce(() => Promise.resolve(response))
       const processed = await getEntries({ amount: MAX_ENTRIES })
       expect(processed).toEqual([
-        { name: 'Εφιάλτης', surname: 'Αθανασίου', phone: '(683) 900 1566', email: 'Εφιάλτης90@example.com', gender: 'male', id: 0 },
-        { name: 'Tatiana', surname: 'Anghelescu', phone: '(674) 954 2573', email: 'tatiana97@example.com', gender: 'female', id: 1 },
-        { name: 'Margita', surname: 'Hrušovský', phone: '(797) 402 9940', email: 'margita92@example.com', gender: 'female', id: 2 },
-        { name: 'Εύηνος', surname: 'Λαγός', phone: '(340) 705 4358', email: 'Εύηνος_95@example.com', gender: 'male', id: 3 }
+        { name: 'Εφιάλτης', surname: 'Αθανασίου', phone: '(683) 900 1566', email: 'Εφιάλτης90@example.com', gender: 'male', id: 1 },
+        { name: 'Tatiana', surname: 'Anghelescu', phone: '(674) 954 2573', email: 'tatiana97@example.com', gender: 'female', id: 2 },
+        { name: 'Margita', surname: 'Hrušovský', phone: '(797) 402 9940', email: 'margita92@example.com', gender: 'female', id: 3 },
+        { name: 'Εύηνος', surname: 'Λαγός', phone: '(340) 705 4358', email: 'Εύηνος_95@example.com', gender: 'male', id: 4 }
       ])
     })
   })
