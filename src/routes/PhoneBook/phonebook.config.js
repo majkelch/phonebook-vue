@@ -31,8 +31,8 @@ export const PAGER_CONFIG = {
 }
 
 /**
- * Helper function for fields
- * @param {Object} config - Field config
+ * Helper function for table fields
+ * @param {Object} config - Field's config
  * @param {String} config.key - Field's key
  * @param {Boolean} config.sortable - Is field sortable
  * @returns {Object} Config object for field

@@ -3,6 +3,8 @@
     <app-loader v-if="isLoading" />
 
     <div v-if="!isLoading">
+      <AppTitle />
+
       <AppSearch
         @onFilterInput="onFilterInput" />
 
@@ -25,6 +27,7 @@
 </template>
 
 <script>
+// imports from exported consts are sorted alphabetically
 import {
   FIELDS,
   FILTER_DEBOUNCE_TIME,
@@ -32,19 +35,23 @@ import {
   PAGER_CONFIG,
   START_PAGE
 } from './phonebook.config'
+
 import { getEntries } from './phonebook.service'
 
 import AppLoader from '@/components/AppLoader'
 import AppPager from '@/components/AppPager'
 import AppSearch from '@/components/AppSearch'
+import AppTitle from '@/components/AppTitle'
 
 export default {
   name: 'PhoneBook',
 
+  // components are sorted alphabetically
   components: {
     AppLoader,
     AppPager,
-    AppSearch
+    AppSearch,
+    AppTitle
   },
 
   /**

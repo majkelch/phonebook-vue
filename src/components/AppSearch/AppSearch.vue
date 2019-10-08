@@ -49,7 +49,7 @@ export default {
     },
 
     /**
-     * Event handler for typing into filter field
+     * Event handler for interacting with filter field
      */
     onFilterInput() {
       this.$emit('onFilterInput', { filter: this.filter })
