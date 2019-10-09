@@ -19,6 +19,11 @@
 5. Tests
 
 ## Project setup
+Install latest `@vue/cli` globally
+```
+npm -i -g @vue/cli
+```
+Install project dependencies
 ```
 npm install
 ```
