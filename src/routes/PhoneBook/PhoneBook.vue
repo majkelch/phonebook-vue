@@ -11,25 +11,30 @@
       <AppSearch
         @onFilterInput="onFilterInput" />
 
-      <b-table
-        responsive
-        striped
-        :current-page="currentPage"
-        :fields="$options.consts.FIELDS"
-        :filter="filter"
-        :filter-debounce="$options.consts.FILTER_DEBOUNCE_TIME"
-        :items="entries"
-        :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE"
-        @filtered="onFilteredTable">
-        <template v-slot:cell(actions)="data">
-          <PhoneBookDelete
-            :row="data"
-            @onRowDelete="onRowDelete" />
-        </template>
-        <template v-slot:table-caption>
-          Number of items: {{ itemsNumber }}.
-        </template>
-      </b-table>
+      <b-container>
+        <b-row
+          md="6">
+          <b-table
+            responsive
+            striped
+            :current-page="currentPage"
+            :fields="$options.consts.FIELDS"
+            :filter="filter"
+            :filter-debounce="$options.consts.FILTER_DEBOUNCE_TIME"
+            :items="entries"
+            :per-page="$options.consts.PAGER_CONFIG.MAX_PER_PAGE"
+            @filtered="onFilteredTable">
+            <template v-slot:cell(actions)="data">
+              <PhoneBookDelete
+                :row="data"
+                @onRowDelete="onRowDelete" />
+            </template>
+            <template v-slot:table-caption>
+              Number of items: {{ itemsNumber }}.
+            </template>
+          </b-table>
+        </b-row>
+      </b-container>
 
       <AppPager
         :config="pagerConfig"

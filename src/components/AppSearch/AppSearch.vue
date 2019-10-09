@@ -1,12 +1,14 @@
 <template>
   <b-container>
-    <b-row>
+    <b-row class="mb-2">
       <b-col
-        cols="12"
-        class="my-1">
+        sm="8"
+        md="6"
+        lg="4">
         <b-form-group
           label="Filter"
           label-cols-sm="3"
+          label-cols-md="2"
           label-size="sm"
           label-for="filterInput"
           class="mb-0">
