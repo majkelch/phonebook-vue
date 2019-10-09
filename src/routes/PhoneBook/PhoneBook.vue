@@ -46,6 +46,8 @@
 <script>
 import * as R from 'ramda'
 
+import { removeOneFromCollectionByIdx } from '@/utils/app.utils'
+
 // imports from exported consts are sorted alphabetically
 import {
   FIELDS,
@@ -177,14 +179,13 @@ export default {
      */
     onRowDelete(data) {
       const { index, item } = data
-      const removeRowByIdx = R.remove(index, 1)
       if (this.filter) {
         this.itemsToRemove = R.append(item, this.itemsToRemove)
-        this.entries = removeRowByIdx(this.filteredItems)
+        this.entries = removeOneFromCollectionByIdx(index)(this.filteredItems)
         this.itemsNumber = R.length(this.entries)
         return
       }
-      this.entries = removeRowByIdx(this.entries)
+      this.entries = removeOneFromCollectionByIdx(index)(this.entries)
       this.entriesCopy = [...this.entries]
       this.itemsNumber = R.length(this.entries)
     }
