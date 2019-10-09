@@ -27,7 +27,8 @@ export const START_PAGE = 1
  */
 export const PAGER_CONFIG = {
   MAX_ENTRIES,
-  MAX_PER_PAGE
+  MAX_PER_PAGE,
+  START_PAGE
 }
 
 /**

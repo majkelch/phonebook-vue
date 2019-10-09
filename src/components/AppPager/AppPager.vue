@@ -26,8 +26,16 @@ export default {
 
   data() {
     return {
-      currentPage: 1
+      currentPage: null
     }
+  },
+
+  mounted() {
+    /**
+     * Destructuring for only one property seems a bit excessive
+     */
+    const { START_PAGE } = this.config
+    this.currentPage = START_PAGE
   },
 
   methods: {
