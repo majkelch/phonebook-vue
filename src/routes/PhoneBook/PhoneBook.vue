@@ -59,23 +59,16 @@ import {
 
 import { getEntries } from './phonebook.service'
 
-import AppLoader from '@/components/AppLoader'
-import AppPager from '@/components/AppPager'
-import AppSearch from '@/components/AppSearch'
-import AppTitle from '@/components/AppTitle'
-
-import PhoneBookDelete from './PhoneBookDelete'
-
 export default {
   name: 'PhoneBook',
 
   // components are sorted alphabetically
   components: {
-    AppLoader,
-    AppPager,
-    AppSearch,
-    AppTitle,
-    PhoneBookDelete
+    AppLoader: () => import('@/components/AppLoader'),
+    AppPager: () => import('@/components/AppPager'),
+    AppSearch: () => import('@/components/AppSearch'),
+    AppTitle: () => import('@/components/AppTitle'),
+    PhoneBookDelete: () => import('./PhoneBookDelete')
   },
 
   /**
